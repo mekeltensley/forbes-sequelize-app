@@ -1,6 +1,6 @@
 const { Article, Billionaire, UnderThirtyProfile } = require('./models');
 
-// //CREATE
+// CREATE
 
 Article.create({
     title:'When Building A Fintech Company, Take No Shortcuts',
@@ -20,13 +20,13 @@ Article.create({
     console.log('Error creating an Article');
 })
 
-//create for billionaire
+// Create for billionaire
 
 Billionaire.create({
     name: 'Brian Armstrong',
     age: 38,
     company: 'Coinbase',
-    net_worth: 12,
+    net_worth: 12_600_000_000,
     facts: 'Brian Armstrong is the chief executive of Coinbase Global, the largest cryptocurrency exchange in the United States.',
     source: 'cryptocurrency,Self Made',
     self_made_score: 8,
@@ -40,6 +40,8 @@ Billionaire.create({
 .catch(function(error){
     console.log('Error creating Billionaire profile');
 })
+
+//  Create a under thirty profile
 
 UnderThirtyProfile.create({
     name:'Whitney Wolfe Herd',
@@ -58,6 +60,10 @@ UnderThirtyProfile.create({
 .catch(function(error){
     console.log('Error creating profile');
 })
+
+
+
+
 
 //READ an Article
 
@@ -84,4 +90,38 @@ Billionaire.findAll({ where: { name: 'Brian Armstrong' } })
     console.log(billionaire.toJSON());
 })
 
+// Update Model
 
+Article.update({
+    title:'Why Jack Dorseys Total Exit From Twitter is Unusual, And Welcome',
+    category: 'Leadership',
+    author: 'Jena McGregor',
+    date: 11302021,
+    content: 'Jack Dorsey is stepping away from Twitter—and its board.',
+    views: 7530,
+    comments: 'Awesome article',
+    likes: 1500,
+    bio: 'I am a Senior Editor at Forbes, leading our coverage of the workplace, careers and leadership issues'     
+},{
+    where: { id: 8 }
+})
+.then(arrayResponse => {
+    console.log('NUMBER OF ROWS UPDATED');
+    console.log(arrayResponse[0]);
+})
+.catch(function(error){
+console.log('Error', error);
+})
+
+
+
+// Delete an item from Model
+
+Article.destroy({ where: {author: 'Chris Dean'} })
+.then(function(response){
+    console.log('RESPONSE FROM DATABASE AFTER DELETING DATA...');
+    console.log(response);
+ })
+ .catch(function(error){
+     console.log('ERROR', error);
+ });

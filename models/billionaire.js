@@ -17,7 +17,7 @@ module.exports = (sequelize, DataTypes) => {
     name: DataTypes.STRING,
     age: DataTypes.INTEGER,
     company: DataTypes.STRING,
-    net_worth: DataTypes.INTEGER,
+    net_worth: DataTypes.BIGINT,
     facts: DataTypes.TEXT,
     source: DataTypes.TEXT,
     self_made_score: DataTypes.INTEGER,
